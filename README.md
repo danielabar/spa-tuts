@@ -27,16 +27,22 @@ First mock up some screens and interactions. [MockFlow](http://app.mockflow.com/
 ### Models
 
 Page Model (data for settings page)
-  "backgroundColor" : ""
-  "celsius" : true
-  "welcomeMessage" : ""
+
+  ```
+    "backgroundColor" : ""
+    "celsius" : true
+    "welcomeMessage" : ""
+  ```
 
 Place Model (data for each place user would like to see weather for, will have many of these)
+
+  ```
   "country"
   "name"
   "displayName"
   "long"
   "lat"
+  ```
 
 Since we'll have many places, will need a *collection*, which are handled differently in different frameworks.
 
@@ -48,15 +54,18 @@ Will also be using HTML5 [Local Storage](https://code.tutsplus.com/tutorials/qui
 
 How to break up application dispay components and structure code? Are there repeating visual patterns that could be templated?
 
+  ```
   Place View (small or expanded) - add X to close
   Place Data View
   Page View - header?
   Settings View
   Add Place View
   Error or Alert view
+  ```
 
 ### Application Logic (aka Controller)
 
+  ```
   Add a place
   Remove a place
   Open Settings
@@ -65,6 +74,7 @@ How to break up application dispay components and structure code? Are there repe
   Save place data
   Save settings data
   Open place detail view
+  ```
 
 #### Routes
 
