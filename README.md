@@ -143,3 +143,29 @@ in an automated fashion, and tests should be run with each change made to code.
 
 Decision: [Qunit](http://qunitjs.com/)
 
+## Project Setup
+
+Start with a [custom build](http://www.initializr.com/) of HTML5 boilerplate.
+
+  ```bash
+  bower init
+  bower install jquery --save
+  bower install modernizr --save
+  bower install bootstrap --save
+  bower install requirejs --save
+  bower install backbone --save
+  bower install underscore --save
+  ```
+
+### Using RequireJS
+
+  ```html
+  <script data-main="scripts/main" src="bower_components/requires/require.js"></script>
+  ```
+
+`data-main` attribute tells RequireJS which module should be loaded to bootstrap the application.
+This module should call `require.config({...})` to configure the application.
+
+`shim` is used to make non-AMD libraries (eg: underscore and backbone) compatible with RequireJS.
+
+To start the app, call `require(...)` method.
