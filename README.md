@@ -8,6 +8,12 @@
     - [Views and Templates](#views-and-templates)
     - [Application Logic (aka Controller)](#application-logic-aka-controller)
       - [Routes](#routes)
+  - [Choosing our tools](#choosing-our-tools)
+    - [Dependencies and modules](#dependencies-and-modules)
+    - [Components](#components)
+    - [Boilerplate code](#boilerplate-code)
+    - [Architecture](#architecture)
+    - [Unit testing](#unit-testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -79,3 +85,61 @@ How to break up application dispay components and structure code? Are there repe
 #### Routes
 
 Support deep linking to any particular place, for example `appurl.com/#/place/sydney`
+
+## Choosing our tools
+
+Evaluate strengths and weaknesses of various frameworks, tools and libraries to determine which ones to use for the project.
+
+Considerations:
+
+1. Does it make sense? for example, syntax
+1. Is it well documented, is it easy to navigate the documentation?
+1. Is there support, a community, plugins?
+1. How much magic is there? (behind the scenes logic that is hidden and/or hard to understand)
+
+For this project, need to select tools to solve the following:
+
+### Dependencies and modules
+
+Makes code more tidy. Rather than including a whole bunch of script tags in html, only include a single script tag for the dependency manager,
+then it can do the work to load all the other dependencies, in the order they're needed.
+
+Would also like a build process, to minify code to make more efficient website in production.
+
+Coding in modules, make cleaner more independent code blocks that are re-usable.
+
+Decision: [RequireJS](http://requirejs.org/)
+
+### Components
+
+For building UI components such as buttons, dropdowns, overlays etc.
+
+Want common interface elements, that are compatible cross-browser.
+
+Decision: [Bootstrap](http://getbootstrap.com/)
+
+### Boilerplate code
+
+[HTML5 Boilerplate index.html](https://github.com/h5bp/html5-boilerplate/blob/master/src/index.html)
+
+### Architecture
+
+Choose a framework with an MV* approach.
+
+[Backbone](http://backbonejs.org/) is lightweight, simple, and not too many dependencies.
+
+Another option is [AngularJS](https://angularjs.org/) but not the best for initial learning of JavaScript and MV* because "too much magic".
+
+[EmberJS](http://emberjs.com/) is another framework that does a lot behind the scenes.
+
+Decision: Backbone
+
+### Unit testing
+
+Every module should be [tested](https://code.tutsplus.com/tutorials/how-to-test-your-javascript-code-with-qunit--net-9077)
+in an automated fashion, and tests should be run with each change made to code.
+
+[Jasmine](http://jasmine.github.io/) has a great natural language like API, but difficult to configure with RequireJS.
+
+Decision: [Qunit](http://qunitjs.com/)
+
