@@ -19,6 +19,9 @@
   - [Backbone Views](#backbone-views)
     - [Remove View](#remove-view)
   - [Backbone Router](#backbone-router)
+  - [Unit Testing and TDD](#unit-testing-and-tdd)
+    - [What makes a good unit test?](#what-makes-a-good-unit-test)
+    - [Test setup](#test-setup)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -238,3 +241,49 @@ Routes can accept variables, using `:` syntax, for example:
   goToDash: function(place) {
     // do something with place
   }
+
+## Unit Testing and TDD
+
+Write tests for each module before developing it. Benefits include:
+
+* Focus on use of modules, such as expected inputs and outputs
+* Define expected behaviour when module functions receive unexpected input
+* Document the code
+* Makes refactoring less dangerous
+
+### What makes a good unit test?
+
+Use the acronym: **A-TRIP**
+
+<dl>
+  <dt>A</dt>
+  <dd>Automatic, incorporated into build process such that they are run on every code change.</dd>
+  <dt>T</dt>
+  <dd>Thorough, unit tests should cover happy path AND ALL edge cases.</dd>
+  <dt>R</dt>
+  <dd>Repeatable, every time tests are run, should get exactly the same results.</dd>
+  <dt>I</dt>
+  <dd>
+    Independent, each test should be able to run, without relying on another test having instantiated something before it.
+    Each test should setup whatever data it needs before it runs, and destroy/cleanup afterwards.
+  </dd>
+  <dt>P</dt>
+  <dd>Professional, just as professional as production code. Keep your tests well formatted, clean and easy to follow.</dd>
+</dl>
+
+### Test setup
+
+  ```bash
+  bower install qunit --save-dev
+  ```
+
+Create a `test-runner.html` file in same dir as `index.html`, and reference qunit.css.
+Use require.js pointing to a `unittestmain` to initialize the tests:
+
+  ```html
+  <script data-main="scripts/unittestmain" src="bower_components/requirejs/require.js"></script>
+  ```
+
+`unittestmain.js` is a copy of `main.js`, plus qunit defined and shimmed.
+Also configure QUnit to not automatically start as soon as it loads (becase it will be controlled via unittestmain initialization).
+
