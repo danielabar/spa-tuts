@@ -30,8 +30,11 @@ require.config({
 
 // Start the app
 require([
-  'backbone'
-], function(Backbone) {
+  'backbone',
+  'app'
+], function(Backbone, App) {
     'use strict';
     console.dir(Backbone);
+    App.init();
+    App.displayTime();
 });
