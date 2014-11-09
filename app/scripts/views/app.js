@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/counter'
-], function($, _, Backbone, CounterView) {
+  'views/about',
+  'views/dash'
+], function($, _, Backbone, AboutView, DashView) {
 
   'use strict';
 
@@ -14,16 +15,15 @@ define([
             '<div class="navbar navbar-default">',
               '<a href="#" class="navbar-brand">Weather Watcher</a>',
               '<ul class="nav navbar-nav">',
-                '<li id="nav-dash"><a href="#">Dashboard</a></li>',
-                '<li id="nav-about"><a href="#">About</a></li>',
+                '<li id="nav-dash"><a href="#dash">Dashboard</a></li>',
+                '<li id="nav-about"><a href="#about">About</a></li>',
               '</ul>',
             '</div>',
             '<div id="content"></div>'
           ].join(''),
 
     events: {
-      'click #nav-dash': 'onNavDash',
-      'click #nav-about': 'onNavAbout'
+
     },
 
     views: {},
@@ -34,13 +34,26 @@ define([
     },
 
     initializeChildViews: function() {
-      this.views['counter'] = new CounterView({
-        id: 'counter-widget',
-        className: 'counter-widget'
+      this.views['about'] = new AboutView({
+        id: 'page-about',
+        className: 'page-view'
       });
 
-      // Counter view render method returns the entire view object, so we can refer to it as 'el' here:
-      this.$('#content').append(this.views['counter'].render().el);
+      this.views['dash'] = new DashView({
+        id: 'page-dash',
+        className: 'page-view'
+      });
+
+      this.renderChildViews(this.views);
+      // this.$('#content').append(this.views['about'].render().el);
+      // this.$('#content').append(this.views['dash'].render().el);
+    },
+
+    renderChildViews: function(views) {
+      var self = this;
+      _.each(views, function(value) {
+        self.$('#content').append(value.render().el);
+      });
     },
 
     onNavAbout: function(e) {
