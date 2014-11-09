@@ -22,47 +22,40 @@ define([
             '<div id="content"></div>'
           ].join(''),
 
-    events: {
-
-    },
+    events: {},
 
     views: {},
 
     initialize: function() {
       this.$el.append(this.html);
       this.initializeChildViews();
+      this.appendChildViews(this.views);
     },
 
+    // Our custom naming convention will come in handy when we want to show/hide views dynamically
     initializeChildViews: function() {
       this.views['about'] = new AboutView({
         id: 'page-about',
         className: 'page-view'
       });
-
       this.views['dash'] = new DashView({
         id: 'page-dash',
         className: 'page-view'
       });
-
-      this.renderChildViews(this.views);
-      // this.$('#content').append(this.views['about'].render().el);
-      // this.$('#content').append(this.views['dash'].render().el);
     },
 
-    renderChildViews: function(views) {
+    appendChildViews: function(views) {
       var self = this;
       _.each(views, function(value) {
         self.$('#content').append(value.render().el);
       });
     },
 
-    onNavAbout: function(e) {
-      console.log('About clicked');
-    },
-
-    onNavDash: function(e) {
-      console.log('Dash clicked');
+    setPage: function(page) {
+      this.$('.page-view').hide();
+      this.$('#page-'+page).show();
     }
+
   });
 
   return AppView;

@@ -18,6 +18,7 @@
     - [Using RequireJS](#using-requirejs)
   - [Backbone Views](#backbone-views)
     - [Remove View](#remove-view)
+  - [Backbone Router](#backbone-router)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -203,3 +204,29 @@ Then each view is responsible for its own rendering.
 Views can also be responsible for their own removal by calling `this.remove()` method.
 
 But this only removes the view from the DOM. The view object still exists.
+
+## Backbone Router
+
+`routes` is a hash of routes to function names to execute when those routes are encountered.
+
+The empty route defines what function to execute when just `#` or no route is encountered.
+
+  ```javascript
+  var Router = Backbone.Router.extend({
+
+    routes: {
+      '': 'goToDash',
+      'dash': 'goToDash',
+      'about': 'goToAbout'
+    },
+
+    goToDash: function() {
+      // do something...
+    }
+  });
+  ```
+
+Can implement a custom `initialize` method on the Router.
+Backbone will call the Router's initialize method when it's instantiated.
+
+Routes can accept variables.
