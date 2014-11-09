@@ -52,8 +52,10 @@ define([
     },
 
     setPage: function(page) {
+      this.$('.nav li').removeClass('active');
       this.$('.page-view').hide();
       this.$('#page-'+page).show();
+      this.$('#nav-'+page).addClass('active');
     }
 
   });

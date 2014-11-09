@@ -229,4 +229,12 @@ The empty route defines what function to execute when just `#` or no route is en
 Can implement a custom `initialize` method on the Router.
 Backbone will call the Router's initialize method when it's instantiated.
 
-Routes can accept variables.
+Routes can accept variables, using `:` syntax, for example:
+
+  ```javascript
+  routes : {
+    'dash/:place': 'goToDash'
+  },
+  goToDash: function(place) {
+    // do something with place
+  }
