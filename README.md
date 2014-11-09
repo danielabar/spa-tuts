@@ -17,6 +17,7 @@
   - [Project Setup](#project-setup)
     - [Using RequireJS](#using-requirejs)
   - [Backbone Views](#backbone-views)
+    - [Remove View](#remove-view)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -178,6 +179,8 @@ To start the app, call `require(...)` method.
 [Backbone views](http://backbonejs.org/#View) are responsible for what the user sees,
 and for managing interactions from the user. Usually a view is backed by a [model](http://backbonejs.org/#Model).
 
+Backbone uses views in a similar way to how other frameworks use controllers.
+
 Every view gets assigned to it, by default, and html div element.
 
 Each view also gets its own $ jQuery function that is scoped to only elements within the view,
@@ -194,3 +197,9 @@ Every view has a `remove()` method which not only removes the view element from 
 With a single page app, only want to re-render parts of the page that have changed.
 To do this in Backbone, break up main app view into multiple sub views.
 Then each view is responsible for its own rendering.
+
+### Remove View
+
+Views can also be responsible for their own removal by calling `this.remove()` method.
+
+But this only removes the view from the DOM. The view object still exists.
