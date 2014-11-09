@@ -6,10 +6,18 @@ define([
   'use strict';
 
   var init = function() {
+    var appView = initView();
+    initRouter(appView);
+  };
+
+  var initView = function() {
     var appView = new AppView();
     $('body').append(appView.el)
+    return appView;
+  };
 
-    var router = new Router(appView);
+  var initRouter = function(view) {
+    var router = new Router(view);
     Backbone.history.start();
   };
 
