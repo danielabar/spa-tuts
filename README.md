@@ -169,3 +169,22 @@ This module should call `require.config({...})` to configure the application.
 `shim` is used to make non-AMD libraries (eg: underscore and backbone) compatible with RequireJS.
 
 To start the app, call `require(...)` method.
+
+## Backbone Views
+
+[Backbone views](http://backbonejs.org/#View) are responsible for what the user sees,
+and for managing interactions from the user. Usually a view is backed by a [model](http://backbonejs.org/#Model).
+
+Every view gets assigned to it, by default, and html div element.
+
+Each view also gets its own $ jQuery function that is scoped to only elements within the view,
+making it more efficient than searching the entire html document.
+
+Every view has an `initialize()` method that should contain things that are only needed once when view is first instantiated.
+
+Every view also has a `render()` method that should be repeatable. It updates the view to represent the latest data.
+
+Every view has a `remove()` method which not only removes the view element from the DOM, but also unbinds any event listeners.
+
+`delegateEvents()` method hooks up any custom events you want the view to listen for.
+
