@@ -3,7 +3,7 @@ define([
   'use strict';
 
   var isNumber = function(n) {
-    return typeof n == 'number';
+    return !isNaN(parseFloat(n)) && isFinite(n);
   }
 
   var celsiusToFahrenheit = function(celsuis) {
