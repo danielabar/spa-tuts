@@ -26,8 +26,21 @@ define([
       'click #nav-about': 'onNavAbout'
     },
 
+    views: {},
+
     initialize: function() {
       this.$el.append(this.html);
+      this.initializeChildViews();
+    },
+
+    initializeChildViews: function() {
+      this.views['counter'] = new CounterView({
+        id: 'counter-widget',
+        className: 'counter-widget'
+      });
+
+      // Counter view render method returns the entire view object, so we can refer to it as 'el' here:
+      this.$('#content').append(this.views['counter'].render().el);
     },
 
     onNavAbout: function(e) {

@@ -14,6 +14,9 @@
     - [Boilerplate code](#boilerplate-code)
     - [Architecture](#architecture)
     - [Unit testing](#unit-testing)
+  - [Project Setup](#project-setup)
+    - [Using RequireJS](#using-requirejs)
+  - [Backbone Views](#backbone-views)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -188,3 +191,6 @@ Every view has a `remove()` method which not only removes the view element from 
 
 `delegateEvents()` method hooks up any custom events you want the view to listen for.
 
+With a single page app, only want to re-render parts of the page that have changed.
+To do this in Backbone, break up main app view into multiple sub views.
+Then each view is responsible for its own rendering.
