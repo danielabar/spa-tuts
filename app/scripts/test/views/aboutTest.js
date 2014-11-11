@@ -6,7 +6,7 @@ define([
 
   var run = function() {
 
-    test('AppView Render', function() {
+    test('AboutView Render', function() {
       var $fixture = $( "#qunit-fixture" );
       var aboutView = new AboutView({
         id: 'page-about',

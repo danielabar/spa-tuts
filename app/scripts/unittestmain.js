@@ -40,11 +40,13 @@ require.config({
 require([
   'QUnit',
   'test/utilsTest',
-  'test/views/aboutTest'
-], function(QUnit, utilsTest, aboutTest) {
+  'test/views/aboutTest',
+  'test/views/appTest'
+], function(QUnit, utilsTest, aboutViewTest, appViewTest) {
     'use strict';
     utilsTest.run();
-    aboutTest.run();
+    aboutViewTest.run();
+    appViewTest.run();
     QUnit.load();
     QUnit.start();
 });
