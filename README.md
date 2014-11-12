@@ -22,6 +22,8 @@
   - [Unit Testing and TDD](#unit-testing-and-tdd)
     - [What makes a good unit test?](#what-makes-a-good-unit-test)
     - [Test setup](#test-setup)
+  - [WebService](#webservice)
+  - [Setting up Models and Collections](#setting-up-models-and-collections)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -287,3 +289,48 @@ Use require.js pointing to a `unittestmain` to initialize the tests:
 `unittestmain.js` is a copy of `main.js`, plus qunit defined and shimmed.
 Also configure QUnit to not automatically start as soon as it loads (becase it will be controlled via unittestmain initialization).
 
+## WebService
+
+Will be using AJAX to get data from a weather service, without requiring a full page refresh on the front end.
+
+Examples of RESTful API's: [Twitter](https://dev.twitter.com/rest/public), [Tumblr](https://www.tumblr.com/docs/en/api/v2)
+
+For this application, will be using [Wunderground](http://www.wunderground.com/weather/api/d/docs)
+
+Will have to use the API with JSONP because it doesn't support CORS.
+
+## Setting up Models and Collections
+
+[Backbone Models](http://backbonejs.org/#Model) manage data. They're responsible for reading/writing data for controllers and views.
+Models are also usually responsible for communicating with the server. (some frameworks have separate proxy object for this)
+
+[Backbone Collections](http://backbonejs.org/#Collection) hold a list of models. May be called "lists" or "stores".
+
+Think of models and collections like JavaScript objects and arrays, but with extra functions to help manage the data.
+
+For example, models have getters and setters that fire a "change" event, which views can use to monitor the same model for changes to its data.
+
+Collections also have events, and have methods to help group, filter and search models.
+
+Usage: Instantiate a model, then pass it to the view constructor. For example
+
+  ```javascript
+  // models/app.js
+  var AppModel = Backbone.Model.extend({
+    defaults: {
+      'backgroundColor': '#999999',
+      'celsius': true,
+      'welcomeMessage': 'Welcome to Weather Watcher'
+    }
+  });
+
+  // views/app.js
+  var AppView = Backbone.View.extend({
+    id: 'foo',
+    // ...
+  });
+
+  // app.js
+  var appModel = new AppModel();
+  var appView = new AppView({model: appModel});
+  ```

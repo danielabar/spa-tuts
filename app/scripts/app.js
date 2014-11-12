@@ -1,7 +1,8 @@
 define([
   'views/app',
+  'models/app',
   'routers/router'
-], function(AppView, Router) {
+], function(AppView, AppModel, Router) {
 
   'use strict';
 
@@ -11,8 +12,10 @@ define([
   };
 
   var initView = function() {
-    var appView = new AppView();
-    $('body').append(appView.el)
+    var appModel = new AppModel();
+    var appView = new AppView({model: appModel});
+
+    $('body').append(appView.render().el)
     return appView;
   };
 
