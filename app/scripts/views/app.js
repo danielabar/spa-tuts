@@ -28,6 +28,8 @@ define([
     views: {},
 
     initialize: function() {
+      this.listenTo(this.model, 'change', this.render);
+
       this.$el.append(this.html);
       this.initializeChildViews();
       this.appendChildViews(this.views);
@@ -61,6 +63,9 @@ define([
     setPage: function(page) {
       this.setView(page);
       this.setNav(page);
+
+      // make a model change to trigger re-render of this view
+      this.model.set('welcomeMessage', 'Welcome to the ' + page + ' page');
     },
 
     setView: function(page) {

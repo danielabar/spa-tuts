@@ -334,3 +334,9 @@ Usage: Instantiate a model, then pass it to the view constructor. For example
   var appModel = new AppModel();
   var appView = new AppView({model: appModel});
   ```
+
+To tell a view to refresh whenever the model changes, add this line in view's `initialize` method:
+
+  ```javascript
+  this.listenTo(this.model, 'change', this.render);
+  ```
