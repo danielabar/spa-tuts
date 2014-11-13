@@ -340,3 +340,43 @@ To tell a view to refresh whenever the model changes, add this line in view's `i
   ```javascript
   this.listenTo(this.model, 'change', this.render);
   ```
+
+Collections are the model. You can also add custom options to the sync method, and customize the parse method.
+
+  ```javascript
+  // models/day.js
+  var DayModel = Backbone.Model.extend({
+    defaults: {
+      'highCelsius': null,
+      'lowCelsius': null,
+      'highFahrenheit': null,
+      'lowFahrenheit': null,
+      'icon_url': ''
+    }
+  });
+
+  // collections/days.js
+  var DaysCollection = Backbone.Collection.extend({
+    model: DayModel,
+
+    sync: function(method, model, options) {
+      options.timeout = 8000;
+      options.dataType = 'jsonp';
+      return Backbone.sync(method, model, options);
+    },
+
+    parse: function(response) {
+      return response.forecast.simpleforecast.forecastday;
+    }
+  });
+  ```
+
+To instantiate a collection, first argument is array (if you want it populated with some objects, or pass empty array),
+second argument is the url which Backbone will call to populate the model. For example
+
+  ```javascript
+  var daysCollection = new DaysCollection([], {
+    url: 'http://api.wunderground.com/api/12345/forecast/q/CA/San_Francisco.json'
+  });
+
+To start the model population, call the `fetch` method of the collection, passing in success and error callbacks.
