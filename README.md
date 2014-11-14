@@ -380,3 +380,12 @@ second argument is the url which Backbone will call to populate the model. For e
   });
 
 To start the model population, call the `fetch` method of the collection, passing in success and error callbacks.
+
+If data from server comes back in a different structure than what you want in the Backbone model,
+define a custom `parse` method on the model to transform it.
+
+`parse` method gets passed in a `data` argument, which is an object in the array returned from collection's parse method.
+
+It's good practice to use the parse method to map server response to a model data, because if the server side changes
+structure of their data, only have to modify parse map to update front end application to match server side change.
+

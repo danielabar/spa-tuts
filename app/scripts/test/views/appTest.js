@@ -1,14 +1,17 @@
 define([
   'views/app',
+  'models/app',
   'jquery'
-], function(AppView, $) {
+], function(AppView, AppModel, $) {
   'use strict';
 
   var run = function() {
 
+    // FIXME Can we use a mock model instead of instantiating the real one to test the view?
     test('AppView Render', function() {
       var $fixture = $( "#qunit-fixture" );
-      var appView = new AppView();
+      var appModel = new AppModel();
+      var appView = new AppView({model: appModel});
       $fixture.append(appView.render().el);
 
       strictEqual($('#qunit-fixture #app-view').length, 1, 'app view is rendered');
@@ -20,7 +23,8 @@ define([
 
     test('AppView setView: about', function() {
       var $fixture = $( "#qunit-fixture" );
-      var appView = new AppView();
+      var appModel = new AppModel();
+      var appView = new AppView({model: appModel});
       $fixture.append(appView.render().el);
 
       appView.setView('about');
@@ -29,7 +33,8 @@ define([
 
     test('AppView setNav: about', function() {
       var $fixture = $( "#qunit-fixture" );
-      var appView = new AppView();
+      var appModel = new AppModel();
+      var appView = new AppView({model: appModel});
       $fixture.append(appView.render().el);
 
       appView.setNav('about');

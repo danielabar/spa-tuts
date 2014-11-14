@@ -2,8 +2,9 @@ define([
   'views/app',
   'models/app',
   'routers/router',
-  'collections/days'
-], function(AppView, AppModel, Router, DaysCollection) {
+  'collections/days',
+  'models/day'
+], function(AppView, AppModel, Router, DaysCollection, DayModel) {
 
   'use strict';
 
@@ -28,7 +29,7 @@ define([
 
   var initData = function() {
     var daysCollection = new DaysCollection([], {
-      url: 'http://api.wunderground.com/api/b4313c5e996ab1a9/forecast/q/CA/San_Francisco.json'
+      model: DayModel
     });
 
     daysCollection.fetch({
@@ -38,7 +39,7 @@ define([
         console.dir(response);
       },
       error: function(collection, response, options) {
-        console.log('success!');
+        console.log('error!');
         console.dir(collection);
         console.dir(response);
       }
