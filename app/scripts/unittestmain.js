@@ -5,6 +5,7 @@ require.config({
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'underscore': '../bower_components/underscore/underscore-min',
     'backbone': '../bower_components/backbone/backbone',
+    'localstorage': '../bower_components/backbone.localStorage/backbone.localStorage-min',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
     'QUnit': '../bower_components/qunit/qunit/qunit'
   },

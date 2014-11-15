@@ -3,22 +3,38 @@ define([
   'models/app',
   'routers/router',
   'collections/days',
-  'models/day'
-], function(AppView, AppModel, Router, DaysCollection, DayModel) {
+  'models/day',
+  'collections/places'
+], function(AppView, AppModel, Router, DaysCollection, DayModel, PlacesCollection) {
 
   'use strict';
 
   var init = function() {
     var appView = initView();
     initRouter(appView);
-    initData();
+
+    // temporarily comment out data portion, we'll come back to this later
+    // initData();
+
+    initPlaces();
+
   };
 
   var initView = function() {
-    var appModel = new AppModel();
-    var appView = new AppView({model: appModel});
+    // Give the model an id to help localstorage later when we fetch
+    var appModel = new AppModel({id: 1});
 
+    var appView = new AppView({model: appModel});
     $('body').append(appView.render().el)
+
+    // Get the saved model from local storage
+    appModel.fetch();
+
+    // temp debug (because using RequireJS nothing is exposed to global)
+    window.debug = {
+      settings: appModel
+    };
+
     return appView;
   };
 
@@ -44,6 +60,16 @@ define([
         console.dir(response);
       }
     });
+  };
+
+  var initPlaces = function() {
+    var placesCollection = new PlacesCollection([]);
+    placesCollection.fetch();
+
+    // temp debug
+    window.debug = {
+      places: placesCollection
+    }
   };
 
   return {

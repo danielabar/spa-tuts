@@ -5,7 +5,8 @@ require.config({
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'underscore': '../bower_components/underscore/underscore-min',
     'backbone': '../bower_components/backbone/backbone',
-    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min'
+    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
+    'localstorage': '../bower_components/backbone.localStorage/backbone.localStorage-min'
   },
 
   shim: {

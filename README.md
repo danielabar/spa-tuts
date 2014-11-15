@@ -24,6 +24,9 @@
     - [Test setup](#test-setup)
   - [WebService](#webservice)
   - [Setting up Models and Collections](#setting-up-models-and-collections)
+  - [Local Storage](#local-storage)
+    - [RequireJS debug trick](#requirejs-debug-trick)
+    - [Local Storage and Collections](#local-storage-and-collections)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -388,4 +391,98 @@ define a custom `parse` method on the model to transform it.
 
 It's good practice to use the parse method to map server response to a model data, because if the server side changes
 structure of their data, only have to modify parse map to update front end application to match server side change.
+
+## Local Storage
+
+Simple API for permanently storing data in the users browser. Excellent browser [support](http://caniuse.com/#search=localstorage).
+
+To write a value
+
+  ```javascript
+  localStorage.setItem('testkey', 'Hello world!');
+  ```
+
+To retrieve value
+
+  ```javascript
+  localStorage.getItem('testkey');  // Hello world!
+  ```
+
+How many items currently in storage (for the current domain)
+
+  ```javascript
+  localstorage.length
+  ```
+
+[Backbone.localstorage](https://github.com/jeromegn/Backbone.localStorage) is a library to store Models and Collections as JSON to local storage.
+
+  ```bash
+  ower install backbone.localStorage --save
+  ```
+
+To use it, add it to model settings, for example
+
+  ```javascript
+  var AppModel = Backbone.Model.extend({
+    localStorage: new Backbone.LocalStorage('AppSettings'),
+    defaults: {
+      'backgroundColor': '#999999',
+      'celsius': true,
+      'welcomeMessage': 'Welcome to Weather Watcher'
+    }
+  });
+  ```
+
+### RequireJS debug trick
+
+Trick for debugging RequireJS app in browser console (because otherwise, nothing is exposed to global).
+
+Somewhere in module code:
+
+  ```javascript
+  var appModel = new AppModel();
+  window.debug = {
+    settings: appModel
+  };
+  ```
+
+Then in browser console
+
+  ```javascript
+  debug.settings;   // outputs appModel object
+  debug.settings.set('backgroundColor', '#990000')  // manipulates the model object
+  debug.settings.save()   // saves model in local storage
+  ```
+
+Backbone localstorage needs you to set an id in the model so it knows which one to fetch from local storage.
+(otherwise it keeps creating new entries).
+
+### Local Storage and Collections
+
+Will save user selcted Places (that they want to see weather for) to local storage.
+
+  ```javascript
+  var PlacesCollection = Backbone.Collection.extend({
+    localStorage: new Backbone.LocalStorage('Places'),
+    model: PlaceModel
+  });
+  ```
+
+For example, let's say two Places are added to the Places collection:
+
+  ```javascript
+  debug.places.create({countryCode: 'IT', name: 'Magenta'})
+  debug.places.create({countryCode: 'CA', name: 'Toronto'})
+  ```
+
+Then local storage would have a Places key with value being a comma separated list of model id's.
+Then each model id would have a key and its value being the actual JSON.
+
+  | Key                                              | Value                                                                             |
+  | ------------------------------------------------ |:---------------------------------------------------------------------------------:|
+  | Places                                           | 834d5cbe-fa9a-c435-50f4-8f29b41be325,863cc011-a2de-7dab-3834-dabea3a91f06         |
+  | Places-834d5cbe-fa9a-c435-50f4-8f29b41be325      | {"countryCode":"IT","name":"Magenta","id":"834d5cbe-fa9a-c435-50f4-8f29b41be325"} |
+  | Places-863cc011-a2de-7dab-3834-dabea3a91f06      | {"countryCode":"CA","name":"Toronto","id":"863cc011-a2de-7dab-3834-dabea3a91f06"} |
+
+
 
