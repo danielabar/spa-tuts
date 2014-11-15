@@ -3,10 +3,12 @@ define([
   'underscore',
   'backbone',
   'collections/places',
-  'templates/templates'
+  'templates'
 ], function($, _, Backbone, PlacesCollection, Templates) {
 
   'use strict';
+
+  var PLACE_TEMPLATE = 'app/templates/place.html';
 
   var DashView = Backbone.View.extend({
 
@@ -35,11 +37,8 @@ define([
       if (this.collection.length) {
         var placesHtml = [];
         this.collection.each(function(model) {
-          // temp debug
-          console.log(Templates['place'](model.toJSON()));
-          placesHtml.push(Templates['place'](model.toJSON()));
+          placesHtml.push(Templates[PLACE_TEMPLATE](model.toJSON()));
         });
-        console.log(placesHtml.join(''));
         this.$placesList.html(placesHtml.join(''));
       } else {
         this.$placesList.html('Sorry, there are no places to display, please add some.');

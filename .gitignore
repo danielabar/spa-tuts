@@ -29,3 +29,6 @@ node_modules
 
 # Front end dependencies
 app/bower_components
+
+# Compiled templates
+app/scripts/templates.js

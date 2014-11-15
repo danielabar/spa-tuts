@@ -33,13 +33,28 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['app/scripts/**/*.js']
+        src: ['app/scripts/**/*.js', '!app/scripts/templates.js']
       }
     },
+
+    jst: {
+      compile: {
+        options: {
+          // templateSettings: {
+          //   interpolate : /\{\{(.+?)\}\}/g
+          // }
+          namespace: 'Templates',
+          amd: true
+        },
+        files: {
+          'app/scripts/templates.js': ['app/templates/**/*.html']
+        }
+      }
+    },
+
     watch: {
       options: {
-        atBegin: true,
-        spawn: false
+        atBegin: true
       },
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -47,16 +62,21 @@ module.exports = function(grunt) {
       },
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+        tasks: ['jshint:lib_test']
+      },
+      jst: {
+        files: 'app/templates/**/*.html',
+        tasks: ['jst']
       }
     }
   });
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jst');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'jst']);
 
 };
