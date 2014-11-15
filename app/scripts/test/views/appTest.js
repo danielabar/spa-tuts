@@ -39,12 +39,12 @@ define([
 
       appView.setNav('about');
       strictEqual($('#qunit-fixture #app-view .navbar ul.nav li#nav-about').attr('class'), 'active', 'About nav item gets active class');
-    })
+    });
 
   };
 
   return {
     run: run
-  }
+  };
 
 });

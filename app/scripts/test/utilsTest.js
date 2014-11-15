@@ -16,6 +16,6 @@ define([
 
   return {
     run: run
-  }
+  };
 
 });

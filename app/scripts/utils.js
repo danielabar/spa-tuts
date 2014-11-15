@@ -4,7 +4,7 @@ define([
 
   var isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-  }
+  };
 
   var celsiusToFahrenheit = function(celsuis) {
     if (!isNumber(celsuis)) {
@@ -16,6 +16,6 @@ define([
 
   return {
     celsiusToFahrenheit: celsiusToFahrenheit
-  }
+  };
 
 });

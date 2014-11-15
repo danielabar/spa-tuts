@@ -28,13 +28,13 @@ define([
       // temp debug
       window.debug = {
         places: this.collection
-      }
+      };
     },
 
     render: function() {
       if (this.collection.length) {
         var placesHtml = [];
-        this.collection.each(function(model, index, list) {
+        this.collection.each(function(model) {
           // temp debug
           console.log(Templates['place'](model.toJSON()));
           placesHtml.push(Templates['place'](model.toJSON()));
