@@ -27,6 +27,9 @@
   - [Local Storage](#local-storage)
     - [RequireJS debug trick](#requirejs-debug-trick)
     - [Local Storage and Collections](#local-storage-and-collections)
+  - [Templates](#templates)
+    - [Underscore Templates](#underscore-templates)
+    - [[Mustache](https://github.com/janl/mustache.js)](#mustachehttpsgithubcomjanlmustachejs)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -484,5 +487,53 @@ Then each model id would have a key and its value being the actual JSON.
   | Places-834d5cbe-fa9a-c435-50f4-8f29b41be325      | {"countryCode":"IT","name":"Magenta","id":"834d5cbe-fa9a-c435-50f4-8f29b41be325"} |
   | Places-863cc011-a2de-7dab-3834-dabea3a91f06      | {"countryCode":"CA","name":"Toronto","id":"863cc011-a2de-7dab-3834-dabea3a91f06"} |
 
+## Templates
 
+Help to separate display part of view from application logic. Templates provide an easy way of combining static HTML with dynamic data.
+
+Will use [Underscore template](http://underscorejs.org/#template), for example:
+
+  ```javascript
+
+  // A very simple template
+  var tmpl = 'Hi <%= name %>, my name is <%= otherName %>';
+
+  // Some data to go in the template
+  var data = {
+    name: 'Jason',
+    otherName: 'Silvia'
+  }
+
+  // Compile template with data on the fly
+  var html = _.template(tmpl, data);
+
+  // OR precompile by passing in only the template
+  var compiledTmpl = _.template(tmpl);
+
+  // Now precompiled template can be used as function
+  var html = tmpl(data);
+  ```
+
+### Underscore Templates
+
+`<%=` variable replacement
+
+`<%` insert any JavaScript
+
+`<%-` variable replacement with HTML escaping
+
+### [Mustache](https://github.com/janl/mustache.js)
+
+Cleaner, more advanced form of templating than Underscore. Supports conditionals and looping.
+
+But for this course, will stick with simple Underscore templates.
+
+Will delegate loading of Places collection to the Dash view.
+
+The dash view will instantiate a Places collection, and listen for changes on it, and re-render:
+
+  ```javascript
+  this.collection = new PlacesCollection([]);
+  this.listenTo(this.collection, 'change', this.render);
+  ```
 

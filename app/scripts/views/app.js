@@ -63,9 +63,6 @@ define([
     setPage: function(page) {
       this.setView(page);
       this.setNav(page);
-
-      // make a model change to trigger re-render of this view
-      this.model.set('welcomeMessage', 'Welcome to the ' + page + ' page');
     },
 
     setView: function(page) {
