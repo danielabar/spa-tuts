@@ -7,7 +7,8 @@ require.config({
     'backbone': '../bower_components/backbone/backbone',
     'localstorage': '../bower_components/backbone.localStorage/backbone.localStorage-min',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
-    'QUnit': '../bower_components/qunit/qunit/qunit'
+    'QUnit': '../bower_components/qunit/qunit/qunit',
+    'sinon': '../scripts/test/libs/sinon-1.12.1'
   },
 
   shim: {
