@@ -14,4 +14,5 @@ define([
   });
 
   return AppModel;
+
 });

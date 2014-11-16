@@ -21,7 +21,6 @@ define([
   };
 
   var initRouter = function(view) {
-    // var router = new Router(view);
     new Router(view);
     Backbone.history.start();
   };

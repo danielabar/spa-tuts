@@ -3,39 +3,27 @@ define([
   'underscore',
   'backbone',
   'views/about',
-  'views/dash'
-], function($, _, Backbone, AboutView, DashView) {
+  'views/dash',
+  'templates'
+], function($, _, Backbone, AboutView, DashView, Templates) {
 
   'use strict';
 
-  // Later we'll learn how to use templates to control html output
+  var APP_TEMPLATE = 'app/templates/app.html';
+
   var AppView = Backbone.View.extend({
     id: 'app-view',
-    html: [
-            '<div class="navbar navbar-default">',
-              '<a href="#" class="navbar-brand">Weather Watcher</a>',
-              '<ul class="nav navbar-nav">',
-                '<li id="nav-dash"><a href="#dash">Dashboard</a></li>',
-                '<li id="nav-about"><a href="#about">About</a></li>',
-              '</ul>',
-              '<p class="navbar-text pull-right"></p>',
-            '</div>',
-            '<div id="content"></div>'
-          ].join(''),
-
     events: {},
-
     views: {},
 
+    // Backbone framework calls initialize method when View is instantiated
     initialize: function() {
       this.listenTo(this.model, 'change', this.render);
-
-      this.$el.append(this.html);
+      this.$el.append(Templates[APP_TEMPLATE]());
       this.initializeChildViews();
-      this.appendChildViews(this.views);
     },
 
-    // Our custom naming convention will come in handy when we want to show/hide views dynamically
+    // Custom naming convention is used to show/hide views dynamically
     initializeChildViews: function() {
       this.views['about'] = new AboutView({
         id: 'page-about',
@@ -45,6 +33,7 @@ define([
         id: 'page-dash',
         className: 'page-view'
       });
+      this.appendChildViews(this.views);
     },
 
     appendChildViews: function(views) {
