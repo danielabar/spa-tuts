@@ -33,6 +33,13 @@ require.config({
         QUnit.config.autostart = false;
       }
     }
+  },
+
+  config: {
+    'api/weather' : {
+      key: 'unit-test-weather-api-key',
+      prefix: 'http://unittest.api.wunderground.com/api/'
+    }
   }
 
 });
@@ -42,12 +49,14 @@ require([
   'QUnit',
   'test/utilsTest',
   'test/views/aboutTest',
-  'test/views/appTest'
-], function(QUnit, utilsTest, aboutViewTest, appViewTest) {
+  'test/views/appTest',
+  'test/api/weatherTest'
+], function(QUnit, utilsTest, aboutViewTest, appViewTest, weatherTest) {
     'use strict';
     utilsTest.run();
     aboutViewTest.run();
     appViewTest.run();
+    weatherTest.run();
     QUnit.load();
     QUnit.start();
 });

@@ -32,8 +32,7 @@ define([
           self.renderDays();
         },
         error: function(collection, response) {
-          console.dir(collection);
-          console.error(response);
+          console.error('Error fetching days data: ' + collection + ', ' + response);
         }
       });
       return this;

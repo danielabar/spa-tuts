@@ -15,7 +15,11 @@ define([
 
     // FIXME If more than one match for city (eg: Toronto), response does not look like this
     parse: function(response) {
-      return response.forecast.simpleforecast.forecastday;
+      if (response.response.error) {
+        console.error(response.response.error.description);
+      } else {
+        return response.forecast.simpleforecast.forecastday;
+      }
     }
   });
 

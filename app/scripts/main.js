@@ -25,6 +25,13 @@ require.config({
         'jquery'
       ]
     }
+  },
+
+  config: {
+    'api/weather' : {
+      key: 'b4313c5e996ab1a9',
+      prefix: 'http://api.wunderground.com/api/'
+    }
   }
 
 });
