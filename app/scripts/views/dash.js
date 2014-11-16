@@ -3,23 +3,20 @@ define([
   'underscore',
   'backbone',
   'collections/places',
-  'views/place'
-], function($, _, Backbone, PlacesCollection, PlaceView) {
+  'views/place',
+  'templates'
+], function($, _, Backbone, PlacesCollection, PlaceView, Templates) {
 
   'use strict';
 
-  var DashView = Backbone.View.extend({
+  var DASH_TEMPLATE = 'app/templates/dash.html';
 
-    html: [
-      '<h3>Dashboard page</h3>',
-      '<div id="places-list" class="clearfix">Loading...</div>',
-      '<div id="dash-buttons"></div>'
-    ].join(''),
+  var DashView = Backbone.View.extend({
 
     views: [],
 
     initialize: function() {
-      this.$el.html(this.html);
+      this.$el.html(Templates[DASH_TEMPLATE]());
       this.$placesList = this.$('#places-list');
       this.$dashButtons = this.$('#dash-buttons');
 
