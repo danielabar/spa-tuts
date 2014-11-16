@@ -541,3 +541,5 @@ The dash view will instantiate a Places collection, and listen for changes on it
 
 Introduce Place view, which will be responsible for loading in the weather data for Days (i.e. Days Collection)
 
+To add a new place, we'll use a modal popup. To avoid duplicate boilerplate code if your project has multiple modal popups,
+create a modal backbone view, and extend from that.
