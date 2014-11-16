@@ -30,6 +30,7 @@
   - [Templates](#templates)
     - [Underscore Templates](#underscore-templates)
     - [[Mustache](https://github.com/janl/mustache.js)](#mustachehttpsgithubcomjanlmustachejs)
+  - [Tying it all together](#tying-it-all-together)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -536,4 +537,7 @@ The dash view will instantiate a Places collection, and listen for changes on it
   this.collection = new PlacesCollection([]);
   this.listenTo(this.collection, 'change', this.render);
   ```
+## Tying it all together
+
+Introduce Place view, which will be responsible for loading in the weather data for Days (i.e. Days Collection)
 

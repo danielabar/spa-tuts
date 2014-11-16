@@ -3,12 +3,10 @@ define([
   'underscore',
   'backbone',
   'collections/places',
-  'templates'
-], function($, _, Backbone, PlacesCollection, Templates) {
+  'views/place'
+], function($, _, Backbone, PlacesCollection, PlaceView) {
 
   'use strict';
-
-  var PLACE_TEMPLATE = 'app/templates/place.html';
 
   var DashView = Backbone.View.extend({
 
@@ -17,6 +15,8 @@ define([
       '<div id="places-list" class="clearfix">Loading...</div>',
       '<div id="dash-buttons"></div>'
     ].join(''),
+
+    views: [],
 
     initialize: function() {
       this.$el.html(this.html);
@@ -34,12 +34,18 @@ define([
     },
 
     render: function() {
+      var self = this;
       if (this.collection.length) {
-        var placesHtml = [];
-        this.collection.each(function(model) {
-          placesHtml.push(Templates[PLACE_TEMPLATE](model.toJSON()));
+        this.collection.each(function(element) {
+          var place = new PlaceView({
+            model: element,
+            id: ['place-',element.get('countryCode'),'-',element.get('name')].join('')
+          });
+          self.$placesList.append(place.render().el);
+
+          // In Backbone, must keep track of views for proper cleanup, o.w. memoryleak and crash :-(
+          self.views.push(place);
         });
-        this.$placesList.html(placesHtml.join(''));
       } else {
         this.$placesList.html('Sorry, there are no places to display, please add some.');
       }
