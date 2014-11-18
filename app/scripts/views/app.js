@@ -4,8 +4,9 @@ define([
   'backbone',
   'views/about',
   'views/dash',
+  'views/settings',
   'templates'
-], function($, _, Backbone, AboutView, DashView, Templates) {
+], function($, _, Backbone, AboutView, DashView, SettingsView, Templates) {
 
   'use strict';
 
@@ -13,7 +14,11 @@ define([
 
   var AppView = Backbone.View.extend({
     id: 'app-view',
-    events: {},
+
+    events: {
+      'click #btn-settings' : 'openSettings'
+    },
+
     views: {},
 
     // Backbone framework calls initialize method when View is instantiated
@@ -62,6 +67,16 @@ define([
     setNav: function(page) {
       this.$('.nav li').removeClass('active');
       this.$('#nav-'+page).addClass('active');
+    },
+
+    openSettings: function() {
+      // this.model refers to Application Model
+      var modal = new SettingsView({
+        id: 'modal-settings',
+        model: this.model,
+        title: 'Application Settings'
+      });
+      modal.show();
     }
 
   });

@@ -1,0 +1,18 @@
+<form role="form">
+  <div class="form-group">
+    <label for="welcomeMessageInput">Welcome Message</label>
+    <input type="text" class="form-control" id="welcomeMessageInput" value="<%= welcomeMessage %>" placeholder="Enter a welcome message">
+  </div>
+  <div class="form-group">
+    <label for="backgroundColorInput">Background Color</label>
+    <input type="text" class="form-control" id="backgroundColorInput" value="<%= backgroundColor %>" placeholder="#999999">
+  </div>
+  <div class="form-group">
+    <!-- FIXME solution for selecting value by model (instructors solution is invalid syntax) -->
+    <select id="tempType" class="form-control">
+      <option value="fahr">Fahrenheit</option>
+      <option value="cel">Celsius</option>
+    </select>
+  </div>
+  <button id="btn-save" type="button" class="btn btn-primary">Save</button>
+</form>

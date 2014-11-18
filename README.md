@@ -543,3 +543,5 @@ Introduce Place view, which will be responsible for loading in the weather data 
 
 To add a new place, we'll use a modal popup. To avoid duplicate boilerplate code if your project has multiple modal popups,
 create a modal backbone view, and extend from that.
+
+Multiple views can share the same model.
