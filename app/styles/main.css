@@ -31,3 +31,27 @@ body {
   float: left;
   margin-right: 20px;
 }
+
+/* Forecast Days */
+.forecast-day {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  width: 268px;
+  float: left;
+  margin-right: 16px;
+}
+.forecast-day img{
+  float: left;
+  margin: 10px;
+}
+.forecast-day p{
+  font-size: 26px;
+}
+
+/* Trick to show/hide temperature units based on parent class, which changes based on user settings */
+.celsius .forecast-day .forecast-fahr{
+  display: none;
+}
+.fahrenheit .forecast-day .forecast-cel{
+  display: none;
+}

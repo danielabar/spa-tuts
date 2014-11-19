@@ -51,7 +51,14 @@ define([
     render: function() {
       this.$el.css('background-color', this.model.get('backgroundColor'));
       this.$('.navbar-text').html(this.model.get('welcomeMessage'));
+      this.renderTemperatureUnits();
       return this;
+    },
+
+    renderTemperatureUnits: function() {
+      var tempType = this.model.get('celsius') ? 'celsius' : 'fahrenheit';
+      this.$el.removeClass('celsius fahrenheit');
+      this.$el.addClass(tempType);
     },
 
     setPage: function(page) {
