@@ -26,10 +26,18 @@ body {
 #places-list {
   padding: 20px;
 }
+/* Muck around with overflow and panel width to make expand functionality work with just css */
 #places-list .panel {
   width: 300px;
   float: left;
   margin-right: 20px;
+  overflow: hidden;
+}
+#places-list .panel.detail {
+  width: 1152px;
+}
+#places-list .panel .panel-body {
+  width: 1166px;
 }
 
 /* Forecast Days */

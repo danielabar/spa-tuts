@@ -18,6 +18,11 @@ define([
 
     daysCollection: new DaysCollection([]),
 
+    events: {
+      'click #btn-remove': 'removePlace',
+      'click #btn-expand': 'openDetail'
+    },
+
     initialize: function() {
       var html = this.template(this.model.toJSON());
       this.$el.html(html);
@@ -44,6 +49,15 @@ define([
         daysHtml.push(Templates[DAY_TEMPLATE](dayModel.toJSON()));
       });
       this.$bodyEl.html(daysHtml);
+    },
+
+    // destroy doesn't count as change therefore view will not automatically be re-rendered if only listening to change
+    removePlace: function() {
+      this.model.destroy();
+    },
+
+    openDetail: function() {
+      this.$('.panel').toggleClass('detail');
     }
 
   });

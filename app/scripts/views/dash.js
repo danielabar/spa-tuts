@@ -29,7 +29,7 @@ define([
 
     initPlaces: function() {
       this.placesCollection = new PlacesCollection([]);
-      this.listenTo(this.placesCollection, 'change', this.render);
+      this.listenTo(this.placesCollection, 'change destroy', this.render);
       this.placesCollection.fetch(); // PlacesCollection is backed by local storage
       // temp debug
       window.debug = {

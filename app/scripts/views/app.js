@@ -23,6 +23,7 @@ define([
 
     // Backbone framework calls initialize method when View is instantiated
     initialize: function() {
+      // Backbone will call render method whenever model is modified
       this.listenTo(this.model, 'change', this.render);
       this.$el.append(Templates[APP_TEMPLATE]());
       this.initializeChildViews();
