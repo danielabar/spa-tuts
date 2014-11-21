@@ -545,3 +545,29 @@ To add a new place, we'll use a modal popup. To avoid duplicate boilerplate code
 create a modal backbone view, and extend from that.
 
 Multiple views can share the same model.
+
+## Deployment
+
+Use [RequireJS Optimizer](http://requirejs.org/docs/optimization.html).
+
+Install it locally with `npm install requirejs`
+
+Create file `app.build.js` specifying all require paths and shims, plus a few extra file paths:
+
+  ```javascript
+  appDir: "../",
+  baseUrl: "scripts",
+  dir: "../../app-build",
+  modules: [
+    {
+      name: "main"
+    }
+  ]
+  ```
+
+Then run the build `node_modules/.bin/r.js -o app/scripts/app.build.js`
+
+Optimizer traces through all app dependencies, minifies and concatenates all the js and css files,
+and places the output in the build `dir`.
+
+The contents of the build dir can then be uploaded to a server for hosting.

@@ -32,3 +32,6 @@ app/bower_components
 
 # Compiled templates
 app/scripts/templates.js
+
+# Build
+app-build

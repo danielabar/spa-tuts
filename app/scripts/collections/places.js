@@ -1,6 +1,7 @@
 define([
   'backbone',
-  'models/place'
+  'models/place',
+  'localstorage'
 ], function(Backbone, PlaceModel) {
   'use strict';
 
