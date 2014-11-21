@@ -31,6 +31,7 @@
     - [Underscore Templates](#underscore-templates)
     - [[Mustache](https://github.com/janl/mustache.js)](#mustachehttpsgithubcomjanlmustachejs)
   - [Tying it all together](#tying-it-all-together)
+  - [Deployment](#deployment)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
