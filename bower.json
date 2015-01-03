@@ -2,9 +2,6 @@
   "name": "Weather App",
   "version": "0.0.0",
   "homepage": "https://github.com/danielabar/spa-tuts",
-  "authors": [
-    "Daniela Baron <baron.daniela@gmail.com>"
-  ],
   "description": "Learning how to build a JavaScript single page application",
   "main": "app/index.html",
   "moduleType": [
